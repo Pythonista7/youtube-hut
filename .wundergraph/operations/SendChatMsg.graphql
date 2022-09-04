@@ -1,0 +1,6 @@
+mutation ($id: String!, $msg: String!, $ts: DateTime, $name: String) {
+  chat_insertOnePublicChat(data: { name: $name, msg: $msg, id: $id, ts: $ts }) {
+    _id
+    ts
+  }
+}

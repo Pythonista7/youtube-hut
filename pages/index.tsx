@@ -5,10 +5,11 @@ import Chat from "../components/Chat";
 import Player from "../components/Player";
 import TopBar from "../components/TopBar";
 import UrlInput from "../components/UrlInput";
+import { useQuery, withWunderGraph } from "../components/generated/nextjs";
 
 const Home: NextPage = () => {
   const [url, setUrl] = useState<String>(
-    "https://www.youtube.com/watch?v=NU9JoFKlaZ0"
+    "https://music.youtube.com/watch?v=nkvg9c9oczM"
   );
   const [id, setId] = useState<String>();
 
@@ -29,7 +30,7 @@ const Home: NextPage = () => {
       </Head>
       <TopBar />
       <UrlInput setUrl={setUrl} />
-      <div className="flex flex-row justify-around p-5 w-full h-fit">
+      <div className="flex flex-row justify-around p-5 w-full h-screen">
         {id && (
           <>
             <Player id={id} />
@@ -42,4 +43,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default withWunderGraph(Home);
