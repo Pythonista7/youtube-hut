@@ -15,8 +15,8 @@ import { User } from "../utils/types";
 import { getVideoId } from "../utils/helper";
 
 const Home: NextPage = () => {
-  const [url, setUrl] = useState<String>(
-    "https://music.youtube.com/watch?v=nkvg9c9oczM"
+  const [url, setUrl] = useState<string>(
+    "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
   );
   const [id, setId] = useState<String>();
   const [user, setUser] = useState<User>();
@@ -113,7 +113,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <TopBar login={login} logout={logout} user={user} setUser={setUser} />
-      <UrlInput setUrl={setUrl} />
+      <UrlInput setUrl={setUrl} url={url} />
       <div className="flex flex-col md:flex-row justify-around p-5 w-full h-screen">
         {id && (
           <>

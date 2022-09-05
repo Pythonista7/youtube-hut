@@ -2,12 +2,11 @@ import { useState } from "react";
 
 interface Props {
   setUrl: (url: string) => void;
+  url: string;
 }
 
-const UrlInput: React.FC<Props> = ({ setUrl }) => {
-  const [input, setInput] = useState<string>(
-    "https://music.youtube.com/watch?v=nkvg9c9oczM"
-  );
+const UrlInput: React.FC<Props> = ({ setUrl, url }) => {
+  const [input, setInput] = useState<string>(url);
   return (
     <div className="flex align-middle h-full m-2">
       <input

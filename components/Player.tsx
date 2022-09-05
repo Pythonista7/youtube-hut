@@ -10,12 +10,12 @@ const Player: React.FC<Props> = ({ id }) => {
       {id && (
         <iframe
           className=" border-blue border-2 w-full h-full border-opacity-30 "
-          src={`https://www.youtube.com/embed/${id}`}
+          title="Embedded youtube"
+          src={`https://www.youtube.com/embed/${id}?autoplay=1`}
           width="100%"
           height="100%"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          title="Embedded youtube"
         />
       )}
     </div>
