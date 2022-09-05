@@ -1,5 +1,5 @@
 query ($id: String!) {
-  chat_publicChats(query: { id: $id }, sortBy: TS_DESC, limit: 30) {
+  chat_publicChats(query: { id: $id }, sortBy: TS_DESC, limit: 50) {
     _id
     id
     name

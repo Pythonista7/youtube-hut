@@ -67,9 +67,6 @@ const Messages: React.FC<{
   return (
     <>
       <div className="flex flex-col h-full justify-end align-bottom">
-        <h1 className="text-xl sticky top-0 flex flex-row justify-center  p-2">
-          Public Chat Room : {id}
-        </h1>
         {msgs &&
           msgs.length > 0 &&
           msgs.map((message) => (
@@ -174,7 +171,7 @@ const Chat: React.FC<Props> = ({ id, user }) => {
   const [msgs, setMsgs] = useState<ChatMessage[]>([]);
 
   return (
-    <div className="flex relative flex-col m-5 max-w-xl  max-h-full overflow-auto bg-gray-dark ">
+    <div className="flex flex-col m-5 w-2/6  max-h-full overflow-auto bg-gray-dark ">
       <Messages id={id} msgs={msgs} setMsgs={setMsgs} />
       <InputText user={user} id={id} setMsgs={setMsgs} />
     </div>

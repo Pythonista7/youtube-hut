@@ -6,7 +6,7 @@ interface Props {
 
 const Player: React.FC<Props> = ({ id }) => {
   return (
-    <div className="flex w-5/6 max-h-full m-5">
+    <div className="flex w-4/6 max-h-full m-5">
       {id && (
         <iframe
           className=" border-blue border-2 w-full h-full border-opacity-30 "
