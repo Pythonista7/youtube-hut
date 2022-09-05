@@ -137,7 +137,7 @@ const InputText: React.FC<{
     const inputData = {
       id: id as string,
       msg: text as string,
-      name: user.name,
+      name: user.verified ? user.name + "(✔)" : user.name,
       ts: new Date().toISOString(),
       color: user.color,
     };

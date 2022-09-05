@@ -10,7 +10,7 @@ export default configureWunderGraphServer<HooksConfig, InternalClient>(() => ({
     mutations: {},
     authentication: {
       mutatingPostAuthentication: async ({ user, internalClient, log }) => {
-        log.info("Running post auth:" + user?.name);
+        log.info("Running post auth:" + user);
         const userClaims = {
           name:
             user?.nickName ||
