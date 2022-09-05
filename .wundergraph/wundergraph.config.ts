@@ -15,7 +15,7 @@ import operations from "./wundergraph.operations";
 // https://www.mongodb.com/docs/atlas/app-services/graphql/authenticate/#api-key
 const chat = introspect.graphql({
   apiNamespace: "chat",
-  url: "https://ap-south-1.aws.realm.mongodb.com/api/client/v2.0/app/application-1-xpnda/graphql",
+  url: process.env.MONGODB_ENDPOINT || "",
   headers: (builder) =>
     builder.addStaticHeader("apiKey", process.env.MONGODB_APIKEY || ""),
 });
