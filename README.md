@@ -2,7 +2,7 @@
 
 Listen to music from Youtube and chat with everyone else watching the same video.
 
-This is project is built with Next.js and Wundergraph and uses Github Authentication.There are also other 3rd party API's from `https://randomuser.me` and `https://api.chucknorris.io/` which help keep the chat box lively.
+This is project is built with [Next.js](https://nextjs.org/) and [Wundergraph](https://wundergraph.com/) and uses github authentication.There are also other 3rd party API's from `https://randomuser.me` and `https://api.chucknorris.io/` which help keep the chat box lively.
 
 ![](assets/screenshot.png)
 
