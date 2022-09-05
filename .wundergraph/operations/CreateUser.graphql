@@ -1,0 +1,7 @@
+mutation ($name: String!, $color: String!, $verified: Boolean!) {
+  chat_upsertOneUser(
+    data: { color: $color, name: $name, verified: $verified }
+  ) {
+    _id
+  }
+}

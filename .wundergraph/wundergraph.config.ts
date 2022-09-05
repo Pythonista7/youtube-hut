@@ -5,6 +5,7 @@ import {
   authProviders,
   introspect,
   templates,
+  EnvironmentVariable,
 } from "@wundergraph/sdk";
 import { NextJsTemplate } from "@wundergraph/nextjs/dist/template";
 
@@ -49,6 +50,13 @@ configureWunderGraphApplication({
 
   codeGenerators: [
     {
+      templates: [
+        ...templates.typescript.all,
+        templates.typescript.operations,
+        templates.typescript.linkBuilder,
+      ],
+    },
+    {
       templates: [new NextJsTemplate()],
       path: "../components/generated",
     },
@@ -64,12 +72,23 @@ configureWunderGraphApplication({
           ]
         : ["http://localhost:3000"],
   },
-  // authentication: {
-  //   cookieBased: {
-  //     providers: [authProviders.demo()],
-  //     authorizedRedirectUris: ["http://localhost:3000/authentication"],
-  //   },
-  // },
+  authentication: {
+    cookieBased: {
+      providers: [
+        // authProviders.google({
+        //   clientId: process.env.GOOGLE_CLIENT_ID || "", // new EnvironmentVariable("GOOGLE_CLIENT_ID", ""),
+        //   clientSecret: process.env.GOOGLE_CLIENT_SECRET || "", // new EnvironmentVariable("GOOGLE_CLIENT_SECRET", ""),
+        //   id: "google",
+        // }),
+        authProviders.github({
+          clientId: process.env.GITHUB_CLIENT_ID || "",
+          clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
+          id: "github",
+        }),
+      ],
+      authorizedRedirectUris: ["http://localhost:3000"],
+    },
+  },
   security: {
     enableGraphQLEndpoint: process.env.NODE_ENV !== "production",
   },

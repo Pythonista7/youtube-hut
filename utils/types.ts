@@ -1,7 +1,7 @@
 import colors from "./colors";
 
 export interface User {
-  authenticated: boolean;
+  verified: boolean;
   name: string;
   color: colors;
 }
