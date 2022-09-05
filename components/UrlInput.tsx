@@ -14,6 +14,11 @@ const UrlInput: React.FC<Props> = ({ setUrl }) => {
         id="url-input"
         placeholder="Youtube-URL"
         onChange={(e) => setInput(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            setUrl(input);
+          }
+        }}
       />
       <button
         onClick={(e) => {

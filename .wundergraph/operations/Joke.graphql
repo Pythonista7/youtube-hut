@@ -1,0 +1,6 @@
+query ($category: String!) {
+  chuck_getRandom(category: $category) {
+    id
+    value
+  }
+}

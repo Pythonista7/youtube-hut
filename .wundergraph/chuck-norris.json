@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Chuck Norris API",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://api.chucknorris.io/jokes"
+    }
+  ],
+  "paths": {
+    "/random": {
+      "get": {
+        "tags": ["Name"],
+        "summary": "Get Random Chuck Norris Joke",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Category of the joke",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "categories": { "type": "string" },
+                    "created_at": { "type": "string" },
+                    "icon_url": { "type": "string" },
+                    "id": { "type": "string" },
+                    "updated_at": { "type": "string" },
+                    "url": { "type": "string" },
+                    "value": { "type": "string" }
+                  },
+                  "example": "{\"categories\":[\"dev\"],\"created_at\":\"2020-01-05 13:42:19.324003\",\"icon_url\":\"https://assets.chucknorris.host/img/avatar/chuck-norris.png\",\"id\":\"90mdw_2uq2anw-r0fakc0w\",\"updated_at\":\"2020-01-05 13:42:19.324003\",\"url\":\"https://api.chucknorris.io/jokes/90mdw_2uq2anw-r0fakc0w\",\"value\":\"Chuck Norris can dereference NULL.\"}"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+query {
+  random_getApi(inc: "name") {
+    results {
+      name {
+        first
+        last
+      }
+    }
+  }
+}

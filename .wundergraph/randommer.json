@@ -1,0 +1,70 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Random API",
+    "version": "v1"
+  },
+  "servers": [
+    {
+      "url": "https://randomuser.me"
+    }
+  ],
+  "paths": {
+    "/api": {
+      "get": {
+        "tags": ["Name"],
+        "summary": "Get Random Name",
+        "parameters": [
+          {
+            "name": "inc",
+            "in": "query",
+            "description": "include",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "object",
+                            "properties": {
+                              "title": { "type": "string" },
+                              "first": { "type": "string" },
+                              "last": { "type": "string" }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "info": {
+                      "type": "object",
+                      "properties": {
+                        "seed": { "type": "string" },
+                        "results": { "type": "integer" },
+                        "page": { "type": "integer" },
+                        "version": { "type": "string" }
+                      }
+                    }
+                  },
+                  "example": "{\"results\":[{\"name\":{\"title\":\"Mr\",\"first\":\"Luke\",\"last\":\"Lewis\"}}],\"info\":{\"seed\":\"6aaf94e8746a7e50\",\"results\":1,\"page\":1,\"version\":\"1.4\"}}"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

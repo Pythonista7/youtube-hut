@@ -15,17 +15,30 @@ import operations from "./wundergraph.operations";
 const chat = introspect.graphql({
   apiNamespace: "chat",
   url: "https://ap-south-1.aws.realm.mongodb.com/api/client/v2.0/app/application-1-xpnda/graphql",
-  headers: (builder) => builder.addStaticHeader("apiKey", ""),
+  headers: (builder) =>
+    builder.addStaticHeader("apiKey", process.env.MONGODB_APIKEY || ""),
 });
 
-// const spacex = introspect.graphql({
-//   apiNamespace: "spacex",
-//   url: "https://api.spacex.land/graphql/",
-// });
+// https://randomuser.me
+const random = introspect.openApi({
+  apiNamespace: "random",
+  source: {
+    kind: "file",
+    filePath: "randommer.json",
+  },
+});
+
+const chuck = introspect.openApi({
+  apiNamespace: "chuck",
+  source: {
+    kind: "file",
+    filePath: "chuck-norris.json",
+  },
+});
 
 const myApplication = new Application({
   name: "app",
-  apis: [chat],
+  apis: [chat, random, chuck],
 });
 
 // configureWunderGraph emits the configuration

@@ -4,8 +4,13 @@ import type {
 	GetChatsByIdResponse,
 	GetChatsByIdInput,
 	GetChatsByIdResponseData,
+	GetRandomNameResponse,
+	GetRandomNameResponseData,
 	HelloResponse,
 	HelloResponseData,
+	JokeResponse,
+	JokeInput,
+	JokeResponseData,
 	SendChatMsgResponse,
 	SendChatMsgInput,
 	SendChatMsgResponseData,
@@ -19,7 +24,7 @@ const defaultWunderGraphContextProperties: WunderGraphContextProperties<Role> = 
 	ssrCache: {},
 	client: null,
 	clientConfig: {
-		applicationHash: "8ab44144",
+		applicationHash: "04660bad",
 		applicationPath: "app/main",
 		baseURL: "http://localhost:9991",
 		sdkVersion: "0.100.0",
@@ -50,6 +55,15 @@ export const useQuery = {
 			operationName: "GetChatsById",
 			requiresAuthentication: false,
 		})(args),
+	Joke: (args: QueryArgsWithInput<JokeInput>) =>
+		hooks.useQueryWithInput<JokeInput, JokeResponseData, Role>(WunderGraphContext, {
+			operationName: "Joke",
+			requiresAuthentication: false,
+		})(args),
+	GetRandomName: hooks.useQueryWithoutInput<GetRandomNameResponseData, Role>(WunderGraphContext, {
+		operationName: "GetRandomName",
+		requiresAuthentication: false,
+	}),
 	Hello: hooks.useQueryWithoutInput<HelloResponseData, Role>(WunderGraphContext, {
 		operationName: "Hello",
 		requiresAuthentication: false,
@@ -70,6 +84,18 @@ export const useLiveQuery = {
 	GetChatsById: (args: SubscriptionArgsWithInput<GetChatsByIdInput>) =>
 		hooks.useSubscriptionWithInput<GetChatsByIdInput, GetChatsByIdResponseData, Role>(WunderGraphContext, {
 			operationName: "GetChatsById",
+			requiresAuthentication: false,
+			isLiveQuery: true,
+		})(args),
+	Joke: (args: SubscriptionArgsWithInput<JokeInput>) =>
+		hooks.useSubscriptionWithInput<JokeInput, JokeResponseData, Role>(WunderGraphContext, {
+			operationName: "Joke",
+			requiresAuthentication: false,
+			isLiveQuery: true,
+		})(args),
+	GetRandomName: (args?: SubscriptionArgs) =>
+		hooks.useSubscriptionWithoutInput<GetRandomNameResponseData, Role>(WunderGraphContext, {
+			operationName: "GetRandomName",
 			requiresAuthentication: false,
 			isLiveQuery: true,
 		})(args),

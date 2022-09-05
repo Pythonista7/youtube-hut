@@ -6,12 +6,20 @@ import Player from "../components/Player";
 import TopBar from "../components/TopBar";
 import UrlInput from "../components/UrlInput";
 import { useQuery, withWunderGraph } from "../components/generated/nextjs";
+import { getRandomColor } from "../utils/colors";
+import { User } from "../utils/types";
 
 const Home: NextPage = () => {
   const [url, setUrl] = useState<String>(
     "https://music.youtube.com/watch?v=nkvg9c9oczM"
   );
   const [id, setId] = useState<String>();
+  const [user, setUser] = useState<User>();
+
+  const { refetch: getRandomName, result: randomNameResult } =
+    useQuery.GetRandomName({
+      lazy: true,
+    });
 
   useEffect(() => {
     if (!url.indexOf("?v=")) return;
@@ -20,6 +28,48 @@ const Home: NextPage = () => {
     const id = url.substring(params);
     setId(id);
   }, [url]);
+
+  useEffect(() => {
+    // if user is already present discard
+    if (user) return;
+    if (
+      randomNameResult &&
+      randomNameResult.status !== "ok" &&
+      randomNameResult.status !== "error"
+    )
+      return;
+    let randName: string | undefined;
+
+    if (randomNameResult && randomNameResult.status === "ok") {
+      randName = randomNameResult.data.random_getApi?.results?.[0].name?.first;
+    }
+
+    if (
+      (randomNameResult && randomNameResult.status === "error") ||
+      (randomNameResult.status === "ok" && !!!randName)
+    ) {
+      randName = "Anon-" + Math.floor(Math.random() * 101).toString();
+    }
+
+    const userData = {
+      authenticated: false,
+      name: randName!,
+      color: getRandomColor(),
+    };
+    setUser(userData);
+    localStorage.setItem("user", JSON.stringify(userData));
+  }, [randomNameResult]);
+
+  useEffect(() => {
+    const u = localStorage.getItem("user");
+    if (!u) {
+      getRandomName();
+      return;
+    } else {
+      console.log("User found in local storage");
+      setUser(JSON.parse(u));
+    }
+  }, []);
 
   return (
     <div className="flex flex-col w-full h-full text-white bg-black">
@@ -30,11 +80,12 @@ const Home: NextPage = () => {
       </Head>
       <TopBar />
       <UrlInput setUrl={setUrl} />
-      <div className="flex flex-row justify-around p-5 w-full h-screen">
+      <div className="flex flex-col md:flex-row justify-around p-5 w-full h-screen">
         {id && (
           <>
             <Player id={id} />
-            <Chat id={id} />
+            {user && <Chat user={user} id={id} />}
+            {!user && <div className="text-white">Loading...{user}</div>}
           </>
         )}
         {!id && <div className="text-4xl">Invalid Video URL</div>}

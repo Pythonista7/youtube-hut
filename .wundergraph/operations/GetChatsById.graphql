@@ -1,8 +1,10 @@
-query ($id: String) {
+query ($id: String!) {
   chat_publicChats(query: { id: $id }, sortBy: TS_DESC, limit: 30) {
     _id
+    id
     name
     msg
     ts
+    color
   }
 }
