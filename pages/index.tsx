@@ -12,6 +12,7 @@ import {
 } from "../components/generated/nextjs";
 import { getRandomColor } from "../utils/colors";
 import { User } from "../utils/types";
+import { getVideoId } from "../utils/helper";
 
 const Home: NextPage = () => {
   const [url, setUrl] = useState<String>(
@@ -28,10 +29,8 @@ const Home: NextPage = () => {
   const { user: ghUser, login, logout } = useWunderGraph();
 
   useEffect(() => {
-    if (!url.indexOf("?v=")) return;
-
-    const params = url.indexOf("?v=") + 3;
-    const id = url.substring(params);
+    const id = getVideoId(url);
+    if (!id) return;
     setId(id);
   }, [url]);
 

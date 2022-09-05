@@ -101,12 +101,12 @@ const Messages: React.FC<{
                   className={`font-bold text-white`}
                   style={{ color: `white` }}
                 >
-                  Chuck-Norris:
+                  Chuck:
                 </div>
                 <div className=" text-white ml-2"> {joke}</div>
               </div>
               {
-                <div className="text-white ml-2">
+                <div className="text-white ml-2 opacity-25">
                   {new Date().toTimeString().slice(0, 5)}
                 </div>
               }
