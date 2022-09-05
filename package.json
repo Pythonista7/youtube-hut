@@ -6,7 +6,7 @@
     "start": "concurrently \"yarn run nextDev\" \"yarn run wundergraph\" \"yarn run browser\"",
     "wundergraph": "wunderctl up --debug",
     "browser": "wait-on \"http-get://localhost:3000\" && wait-on \"http-get://localhost:9991\" && open-cli http://localhost:3000",
-    "build": "next build",
+    "build": "wunderctl generate && next build",
     "nextDev": "next dev",
     "nextStart": "next start",
     "generate": "wunderctl generate --debug",
